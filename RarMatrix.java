@@ -178,6 +178,15 @@ public class RarMatrix {
                 k++;
                 Xp=X.get(i);
             }
+            boolean ok = false;
+            for (Integer m : A.get(i).keySet()) {
+                if(A.get(i).get(m) != 0.0){
+                    ok = true;
+                }
+            }
+            if(ok == false){
+                continue;
+            }
             double valueDiagonal = A.get(i).get(i);
             double bVal = b.get(i);
             double lowerTriangle = LowerTriangle(A,X,i);

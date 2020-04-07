@@ -141,8 +141,13 @@ public class RarMatrix {
 
     public List<Double> ALG(List<Double> b){
         List<Double> X = new ArrayList<>();
-
+        for (int i = 0; i < matrix.size(); i++) {
+            if (matrix.get(i).get(i) < eps) {
+                return X;
+            }
+        }
         List<Map<Integer,Double>> A = new ArrayList<Map<Integer,Double>>(this.matrix.values());
+
         double delta;
         int k=0;
         for(int i=0;i<b.size();i++){
@@ -180,7 +185,7 @@ public class RarMatrix {
             }
             boolean ok = false;
             for (Integer m : A.get(i).keySet()) {
-                if(A.get(i).get(m) != 0.0){
+                if(A.get(i).get(m)  > eps ){
                     ok = true;
                 }
             }
